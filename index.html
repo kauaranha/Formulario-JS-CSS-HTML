@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <script
+      src="https://kit.fontawesome.com/7f335cf7b9.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body class="themed">
+    <div class="main">
+      <div id="illustration">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets7.lottiefiles.com/private_files/lf30_lmb5go3d.json"  background="transparent" speed="1"  style="width: 600px; height: 800px;"  loop controls autoplay></lottie-player>
+      </div>
+      <div class="form-container">
+        <div class="theme-selector">
+          <input
+            type="checkbox"
+            id="switch"
+            onchange="onThemeChange()"
+            value="dark"
+          />
+          <label for="switch">Toggle</label>
+        </div>
+        <div class="form-header">
+          <h3>Cadastre o formulario</h3>
+        </div>
+        <form id="form">
+          <div>
+            <input id="username" placeholder="Username" class="inputs required" oninput="nameValidate()">
+            <span class="span-required" >Nome deve ter no minimo 3 caracters</span>
+          </div>
+
+          <div>
+            <input id="email" placeholder="Email" class="inputs required" oninput="emailValidate()">
+            <span class="span-required">Digite um Email Valido</span>
+          </div>
+          <div>
+            <input id="password" placeholder="Senha" type="password" class="inputs required" oninput="mainPasswordValidate()">
+            <span class="span-required">Digite uma senha com no mínimo 8 caracters</span>
+          </div>
+          <div>
+            <input id="password" placeholder="Confirme sua Senha" type="password" class="inputs required" oninput="ComparePassword()">
+            <span class="span-required">As senhas devem ser identicas!</span>
+          </div>
+
+          <div>
+            <input id="telefone" placeholder="Telefone" type="text" maxlength="11" class="inputs required">
+            <span class="span-required">Digite um telefone valido!</span>
+          </div>
+
+          <div>
+            <input id="cpf" placeholder="CPF" type="text" maxlength="11" class="inputs required">
+          </div>
+
+          <div>
+            <input id="RG" placeholder="RG" type="text" maxlength="9" class="inputs required">
+
+          </div>
+
+          
+
+
+          <button type="submit" value="Submit">Concluir o Cadastro</button>
+        </form>
+
+
+        <div class="form-buttons">
+          <button>
+            <i class="fa-brands fa-google"></i>
+            <span>Continuar com Google</span>
+          </button>
+          <button>
+            <i class="fa-brands fa-facebook"></i>
+          </button>
+          <button>
+            <i class="fa-brands fa-apple"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+  const form = document.getElementById('form');
+  const campos = document.querySelectorAll('.required');
+  const spans = document.querySelectorAll('.span-required');
+  const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  function setError(index){
+    campos[index].style.border = '2px solid #e63636';
+    spans[index].style.display = 'block';
+
+  }
+
+  function removeError(index){
+    campos[index].style.border = '';
+    spans[index].style.display = 'none';
+  }
+
+  function nameValidate(){
+    if(campos[0].value.length < 3)
+    {
+      setError(0);
+    }
+    else{
+      removeError(0);
+    }
+ }
+
+ function emailValidate(){
+  if(!emailRegex.test(campos[1].value))
+  {
+    setError(1);
+  }
+  else{
+    removeError(1);
+  }
+ }
+
+ function mainPasswordValidate(){
+  if(campos[2].value.length < 8)
+  {
+     setError(2);
+  }
+  else{
+    removeError(2);
+    ComparePassword();
+  }
+ }
+
+ function ComparePassword(){
+  if(campos[2].value == campos[3].value && campos[3].value.length >= 8)
+  {
+    removeError(3);
+  }
+  else {
+    setError(3);
+  }
+ }
+  </script>
+</html>
